@@ -22,7 +22,7 @@ import java.util.Scanner;
  * It utilizes recursion to generate the strings, mergesort to sort them, and
  * binary search to find them in a dictionary.
  *
- * @author Zach Blick, [ADD YOUR NAME HERE]
+ * @author Zach Blick, [Sabrina Vohra]
  *
  * Written on March 5, 2023 for CS2 @ Menlo School
  *
@@ -47,10 +47,20 @@ public class SpellingBee {
         // YOUR CODE HERE — Call your recursive method!
     }
 
+    public void rGeneration() {
+        for(int i = 0; i < letters.length(); i++) {
+            String current = letters.substring(i, i+1);
+        }
+    }
+
     // TODO: Apply mergesort to sort all words. Do this by calling ANOTHER method
     //  that will find the substrings recursively.
     public void sort() {
         // YOUR CODE HERE
+    }
+
+    public void rSort() {
+
     }
 
     // Removes duplicates from the sorted list.
