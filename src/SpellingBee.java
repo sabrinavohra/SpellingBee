@@ -58,7 +58,8 @@ public class SpellingBee {
             words.add(word);
             String newWord = word + letters.charAt(i);
             // Get every letter but the one that was just chosen
-            makeWords(newWord, letters.substring(i + 1) + letters.substring(0,i));
+            // How to get final letter?
+            makeWords(newWord, letters.substring(0, i) + letters.substring(i + 1));
             //makeWords(newWord, letters.substring(0, i) + letters.substring(i + 1));
         }
         return words;

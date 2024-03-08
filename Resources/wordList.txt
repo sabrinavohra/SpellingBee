@@ -1,15 +1,15 @@
 
-c
-ca
-c
-cb
+s
+sa
+s
+sb
 
+a
+as
 a
 ab
-a
-ac
 
 b
-bc
+bs
 b
 ba
