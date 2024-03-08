@@ -51,6 +51,7 @@ public class SpellingBee {
     public ArrayList<String> makeWords(String word, String letters) {
         // each time we add a letter to the left side and recursively call this
         if(letters.isEmpty()) {
+            words.add(word);
             return words;
         }
         for(int i = 0; i < letters.length(); i++) {
@@ -58,7 +59,6 @@ public class SpellingBee {
             words.add(word);
             String newWord = word + letters.charAt(i);
             // Get every letter but the one that was just chosen
-            // How to get final letter?
             makeWords(newWord, letters.substring(0, i) + letters.substring(i + 1));
             //makeWords(newWord, letters.substring(0, i) + letters.substring(i + 1));
         }
@@ -70,6 +70,8 @@ public class SpellingBee {
     public void sort() {
         // YOUR CODE HERE
     }
+
+
 
     public void rSort() {
 

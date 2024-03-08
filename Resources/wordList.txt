@@ -1,15 +1,21 @@
 
-s
-sa
-s
-sb
-
-a
-as
 a
 ab
+abc
+a
+ac
+acb
 
 b
-bs
-b
 ba
+bac
+b
+bc
+bca
+
+c
+ca
+cab
+c
+cb
+cba
