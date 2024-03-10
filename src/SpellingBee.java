@@ -69,12 +69,33 @@ public class SpellingBee {
     //  that will find the substrings recursively.
     public void sort() {
         // YOUR CODE HERE
+        System.out.println(findSubstrings());
     }
 
+    public ArrayList<String> findSubstrings() {
+        for(int i = 0; i < words.size(); i++) {
+            if(words.get(i).compareTo(words.get(i++)) < 0) {
+                words.set(i, words.get(i++));
+            }
+        }
+        return words;
+        // Base case
+        // Steps in Merge Sort:
+            // Divide until each part is only one unit
+            // Add back together until correctly sorted by comparing to next element
 
 
-    public void rSort() {
 
+//        if(i >= words.size()) {
+//            return words;
+//        }
+//        int big = words.get(i).compareTo(words.get(i++));
+//        if(big < 0) {
+//            words.set(i, String.valueOf(i++));
+//        }
+//        findSubstrings(i++);
+//        findSubstrings(i--);
+//        return words;
     }
 
     // Removes duplicates from the sorted list.

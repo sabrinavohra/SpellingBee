@@ -1,21 +1,21 @@
 
+s
+sa
+sab
+s
+sb
+sba
+
+a
+as
+asb
 a
 ab
-abc
-a
-ac
-acb
+abs
 
+b
+bs
+bsa
 b
 ba
-bac
-b
-bc
-bca
-
-c
-ca
-cab
-c
-cb
-cba
+bas
