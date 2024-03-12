@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,14 +70,44 @@ public class SpellingBee {
     //  that will find the substrings recursively.
     public void sort() {
         // YOUR CODE HERE
-        System.out.println(findSubstrings());
+        mergeSort(0, words.size() - 1);
     }
 
-    public ArrayList<String> findSubstrings() {
-        // Base case
-        // Steps in Merge Sort:
-            // Divide until each part is only one unit
-            // Add back together until correctly sorted by comparing to next element
+    public ArrayList<String> mergeSort(int low, int high) {
+        if(high - low == 0) {
+            ArrayList<String> newArray = new ArrayList<>();
+            newArray.add(words.get(low));
+            return newArray;
+        }
+        int med = ((high + low) / 2);
+        ArrayList<String> arr1 = mergeSort(low, med);
+        ArrayList<String> arr2 = mergeSort(med + 1, high);
+        return merge(arr1, arr2);
+    }
+
+    public ArrayList<String> merge(ArrayList<String> arr1, ArrayList<String> arr2) {
+        ArrayList<String> merged = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while(i < arr1.size() && j < arr2.size()) {
+            String current1 = arr1.get(i);
+            String current2 = arr2.get(j);
+            if(current1.compareToIgnoreCase(current2) > 0) {
+                merged.add(i + j, arr1.get(i));
+                i++;
+            }
+            else {
+                merged.add(i + j, arr1.get(j));
+                j++;
+            }
+        }
+        while(i < arr1.size()) {
+            merged.add(i + j, arr1.get(i));
+        }
+        while(j < arr2.size()) {
+            merged.add(i + j, arr2.get(j));
+        }
+        words = merged;
         return words;
     }
 
