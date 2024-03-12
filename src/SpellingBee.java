@@ -73,29 +73,11 @@ public class SpellingBee {
     }
 
     public ArrayList<String> findSubstrings() {
-        for(int i = 0; i < words.size(); i++) {
-            if(words.get(i).compareTo(words.get(i++)) < 0) {
-                words.set(i, words.get(i++));
-            }
-        }
-        return words;
         // Base case
         // Steps in Merge Sort:
             // Divide until each part is only one unit
             // Add back together until correctly sorted by comparing to next element
-
-
-
-//        if(i >= words.size()) {
-//            return words;
-//        }
-//        int big = words.get(i).compareTo(words.get(i++));
-//        if(big < 0) {
-//            words.set(i, String.valueOf(i++));
-//        }
-//        findSubstrings(i++);
-//        findSubstrings(i--);
-//        return words;
+        return words;
     }
 
     // Removes duplicates from the sorted list.
