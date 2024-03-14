@@ -70,43 +70,41 @@ public class SpellingBee {
     //  that will find the substrings recursively.
     public void sort() {
         // YOUR CODE HERE
-        words = mergeSort(0, words.size() - 1);
+        mergeSort(0, words.size() - 1);
     }
 
-    public ArrayList<String> mergeSort(int low, int high) {
+    public void mergeSort(int low, int high) {
         if(high - low == 0) {
-            ArrayList<String> newArray = new ArrayList<String>();
-            newArray.add(words.get(low));
-            return newArray;
+            return;
+//            ArrayList<String> newArray = new ArrayList<String>();
+//            newArray.add(words.get(low));
+//            return newArray;
         }
         int med = ((high + low) / 2);
-        ArrayList<String> arr1 = mergeSort(low, med);
-        ArrayList<String> arr2 = mergeSort(med + 1, high);
-        return merge(arr1, arr2);
+        mergeSort(low, med);
+        mergeSort(med + 1, high);
+        merge(low, high, med);
     }
 
-    public ArrayList<String> merge(ArrayList<String> arr1, ArrayList<String> arr2) {
+    public ArrayList<String> merge(int low, int med, int high) {
         ArrayList<String> merged = new ArrayList<String>();
-        int i = 0;
-        int j = 0;
-        while(i < arr1.size() && j < arr2.size()) {
-            String current1 = arr1.get(i);
-            String current2 = arr2.get(j);
-            if(current1.compareTo(current2) < 0) {
-                merged.add(arr1.get(i));
+        int i = low;
+        int j = med + 1;
+        while(i < med + 1 && j < high) {
+            if (words.get(i).compareTo(words.get(j)) < 0) {
+                merged.add(words.get(i));
                 i++;
-            }
-            else {
-                merged.add(arr1.get(j));
+            } else {
+                merged.add(words.get(j));
                 j++;
             }
         }
-        while(i < arr1.size()) {
-            merged.add(arr1.get(i));
+        while (i <= med) {
+            merged.add(words.get(i));
             i++;
         }
-        while(j < arr2.size()) {
-            merged.add(arr2.get(j));
+        while(j <= high) {
+            merged.add(words.get(j));
             j++;
         }
         words = merged;
