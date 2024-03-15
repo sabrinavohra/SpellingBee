@@ -112,7 +112,7 @@ public class SpellingBee {
                 j++;
             }
         }
-        // If one half has more remaining Strings, can continue adding
+        // If one half has more remaining Strings, continues adding until all words have been sorted
         while (i <= med) {
             merged.add(words.get(i));
             i++;
