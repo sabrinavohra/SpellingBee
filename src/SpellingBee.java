@@ -46,57 +46,73 @@ public class SpellingBee {
     //  that will find the substrings recursively.
     public void generate() {
         // YOUR CODE HERE — Call your recursive method!
+        // Calls recursive method
         makeWords("", letters);
     }
 
+    // Method makes all possible words
     public void makeWords(String word, String letters) {
-        // each time we add a letter to the left side and recursively call this
+        // Makes sure all letters haven't been used
         if(letters.isEmpty()) {
+            // Adds final word if all letters have been used
             words.add(word);
         }
         for(int i = 0; i < letters.length(); i++) {
-            //word = word + letters.charAt(i);
+            // Adds each possible word
             words.add(word);
+            // Creates a new word
             String newWord = word + letters.charAt(i);
-            // Get every letter but the one that was just chosen
+            // Gets every letter but the one that was just chosen
             makeWords(newWord, letters.substring(0, i) + letters.substring(i + 1));
-            //makeWords(newWord, letters.substring(0, i) + letters.substring(i + 1));
         }
     }
 
-    // TODO: Apply mergesort to sort all words. Do this by calling ANOTHER method
-    //  that will find the substrings recursively.
+    // Sorts possible words
     public void sort() {
         // YOUR CODE HERE
         mergeSort(0, words.size() - 1);
     }
 
+    // Does the divide step of the merge sort algorithm
     public void mergeSort(int low, int high) {
+        // Returns if all words have been sorted
         if(high - low == 0) {
             return;
-//            ArrayList<String> newArray = new ArrayList<String>();
-//            newArray.add(words.get(low));
-//            return newArray;
         }
+        // Creates medium between high and low values
         int med = (high + low) / 2;
+        // Calls merge sort on the first half of the values
         mergeSort(low, med);
+        // Calls merge sort on the second half of the values
         mergeSort(med + 1, high);
+        // Calls merging method
         merge(low, med, high);
     }
 
+    // Does the merging stop of the merge sort algorithm
     public void merge(int low, int med, int high) {
+        // Creates new ArrayList to store values as they are added and sorted
         ArrayList<String> merged = new ArrayList<String>();
+        // Initializes values to know where to sort
         int i = low;
         int j = med + 1;
+        // Makes sure that values don't traverse too high
         while(i <= med && j <= high) {
+            // Adds word from half of segment if it is lesser than the other segment
             if (words.get(i).compareTo(words.get(j)) < 0) {
+                // Adds word to end of ArrayList
                 merged.add(words.get(i));
+                // Increases i since the value has been used
                 i++;
+            // Adds word from remaining segment if it is lesser than the other segment
             } else {
+                // Adds word to end of ArrayList
                 merged.add(words.get(j));
+                // Increases j since the value has been used
                 j++;
             }
         }
+        // If one half has more remaining Strings, can continue adding
         while (i <= med) {
             merged.add(words.get(i));
             i++;
@@ -105,7 +121,9 @@ public class SpellingBee {
             merged.add(words.get(j));
             j++;
         }
+        // Adds each sorted word back to words
         for(int l = 0; l < merged.size(); l++) {
+            // Sets words to correct spot so they don't overlap
             words.set(low + l, merged.get(l));
         }
     }
@@ -122,41 +140,43 @@ public class SpellingBee {
         }
     }
 
-    // TODO: For each word in words, use binary search to see if it is in the dictionary.
-    //  If it is not in the dictionary, remove it from words.
     public void checkWords() {
         // YOUR CODE HERE
+        // Removes words from words if they are not in the dictionary
+        // Looks through each word in the list
         for(int i = 0; i < words.size(); i++) {
-            if(!foundAgain(words.get(i), 0, DICTIONARY_SIZE)) {
+            // Calls found method on each word in the list
+            if(!found(words.get(i), 0, DICTIONARY_SIZE)) {
+                // Removes word if it isn't in the dictionary
                 words.remove(i);
+                // Removes from i so each word is looked at even after one is deleted
                 i--;
             }
         }
     }
-//    public boolean found(String s) {
-//        for(int i = 0; i < DICTIONARY_SIZE; i++) {
-//            if(DICTIONARY[i].equals(s)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
-    public boolean foundAgain(String s, int start, int end) {
+    // Finds out if a given word is in the dictionary
+    public boolean found(String s, int start, int end) {
+        // Declares variables for the middle of the area being searched for the word
         int med = (end + start) / 2;
+        // Returns true if the dictionary at the medium value is the same as the String currently being searched for
         if(DICTIONARY[med].equals(s)) {
             return true;
         }
+        // Returns false if all the values have been checked and there's no match
         else if(start >= end) {
             return false;
         }
+        // Changes end variable if the String being searched for is less than the medium value lexicographically
         else if(DICTIONARY[med].compareTo(s) > 0) {
             end = med - 1;
         }
+        // Changes start variable if the String being searched for is greater than the medium value lexicographically
         else if(DICTIONARY[med].compareTo(s) < 0) {
             start = med + 1;
         }
-        return foundAgain(s, start, end);
+        // Recursively calls the method with the new values until a match is found or not
+        return found(s, start, end);
     }
 
     // Prints all valid words to wordList.txt
