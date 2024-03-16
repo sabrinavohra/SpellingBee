@@ -45,7 +45,6 @@ public class SpellingBee {
     //  Store them all in the ArrayList words. Do this by calling ANOTHER method
     //  that will find the substrings recursively.
     public void generate() {
-        // YOUR CODE HERE — Call your recursive method!
         // Calls recursive method
         makeWords("", letters);
     }
@@ -69,7 +68,6 @@ public class SpellingBee {
 
     // Sorts possible words
     public void sort() {
-        // YOUR CODE HERE
         mergeSort(0, words.size() - 1);
     }
 
@@ -141,7 +139,6 @@ public class SpellingBee {
     }
 
     public void checkWords() {
-        // YOUR CODE HERE
         // Removes words from words if they are not in the dictionary
         // Looks through each word in the list
         for(int i = 0; i < words.size(); i++) {
@@ -176,7 +173,7 @@ public class SpellingBee {
             start = med + 1;
         }
         // Recursively calls the method with the new values until a match is found or not
-        return found(s, start, end);
+        return found( s, start, end);
     }
 
     // Prints all valid words to wordList.txt
